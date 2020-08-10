@@ -15,7 +15,9 @@ class _SocialsScreenState extends State<SocialsScreen> {
     return Scaffold(
       body: Stack(
         children: [
-          Positioned(
+          AnimatedPositioned(
+              duration: Duration( milliseconds: 500),
+              curve: Curves.decelerate,
               top: (social == Social.instagram)
                   ? 0
                   : MediaQuery.of(context).size.height * 0.666667,
@@ -26,7 +28,9 @@ class _SocialsScreenState extends State<SocialsScreen> {
                       social = Social.instagram;
                     });
                   },
-                  child: Container(
+                  child: AnimatedContainer(
+                    duration: Duration( milliseconds: 500),
+                    curve: Curves.decelerate,
                     height: (social == Social.instagram)
                         ? MediaQuery.of(context).size.height * 0.666667
                         : MediaQuery.of(context).size.height * (1 - 0.666667),
@@ -35,7 +39,9 @@ class _SocialsScreenState extends State<SocialsScreen> {
                         : MediaQuery.of(context).size.width / 2.0,
                     color: Colors.pinkAccent,
                   ))),
-          Positioned(
+          AnimatedPositioned(
+              duration: Duration( milliseconds: 500),
+              curve: Curves.decelerate,
               top: (social == Social.twitter)
                   ? 0
                   : MediaQuery.of(context).size.height * 0.666667,
@@ -48,7 +54,9 @@ class _SocialsScreenState extends State<SocialsScreen> {
                       social = Social.twitter;
                     });
                   },
-                  child: Container(
+                  child: AnimatedContainer(
+                    duration: Duration( milliseconds: 500),
+                    curve: Curves.decelerate,
                     height: (social == Social.twitter)
                         ? MediaQuery.of(context).size.height * 0.666667
                         : MediaQuery.of(context).size.height * (1 - 0.666667),
@@ -57,7 +65,9 @@ class _SocialsScreenState extends State<SocialsScreen> {
                         : MediaQuery.of(context).size.width / 2.0,
                     color: Colors.blue,
                   ))),
-          Positioned(
+          AnimatedPositioned(
+              duration: Duration( milliseconds: 500),
+              curve: Curves.decelerate,
               top: (social == Social.youtube)
                   ? 0
                   : MediaQuery.of(context).size.height * 0.666667,
@@ -70,7 +80,9 @@ class _SocialsScreenState extends State<SocialsScreen> {
                       social = Social.youtube;
                     });
                   },
-                  child: Container(
+                  child: AnimatedContainer(
+                    duration: Duration( milliseconds: 500),
+                    curve: Curves.decelerate,
                     height: (social == Social.youtube)
                         ? MediaQuery.of(context).size.height * 0.666667
                         : MediaQuery.of(context).size.height * (1 - 0.666667),
