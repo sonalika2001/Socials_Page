@@ -92,20 +92,23 @@ class _YouTubeState extends State<YouTube> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(10 * widget.scale),
-      child: ListView.builder(
-        itemBuilder: (context, index) {
-          return Padding(
-            padding: EdgeInsets.all(10 * widget.scale),
-            child: youTubewidget(
-              GetYoutubeInfo.videoTitle[index],
-              GetYoutubeInfo.videoURL[index],
-              GetYoutubeInfo.thumbnailURL[index],
-            ),
-          );
-        },
-        itemCount: GetYoutubeInfo.videoTitle.length,
-      ),
-    );
+        padding: EdgeInsets.all(10 * widget.scale),
+        child: fetched == true
+            ? ListView.builder(
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: EdgeInsets.all(10 * widget.scale),
+                    child: youTubewidget(
+                      GetYoutubeInfo.videoTitle[index],
+                      GetYoutubeInfo.videoURL[index],
+                      GetYoutubeInfo.thumbnailURL[index],
+                    ),
+                  );
+                },
+                itemCount: GetYoutubeInfo.videoTitle.length,
+              )
+            : Center(
+                child: Text('Please wait'),
+              ));
   }
 }

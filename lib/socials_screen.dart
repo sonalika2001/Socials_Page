@@ -13,8 +13,6 @@ class SocialsScreen extends StatefulWidget {
 
 enum Social { instagram, youtube, twitter }
 
-GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey();
-
 class _SocialsScreenState extends State<SocialsScreen> {
   Social social = Social.instagram;
   getInstaInfo insta = getInstaInfo();
@@ -35,7 +33,6 @@ class _SocialsScreenState extends State<SocialsScreen> {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
-      key: scaffoldKey,
       body: Stack(
         children: [
           AnimatedPositioned(
