@@ -10,6 +10,7 @@ class SocialsApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData.dark().copyWith(
         primaryColor: Color(0xFF1B1C21),
         scaffoldBackgroundColor: Color(0xFF000000),
