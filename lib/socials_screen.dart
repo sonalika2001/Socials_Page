@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:socials_page/api/twitter_api.dart';
 import './api/instagram_api.dart';
-import './api/youtube_api.dart';
+
 import './container_properties.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -13,14 +14,21 @@ enum Social { instagram, youtube, twitter }
 
 class _SocialsScreenState extends State<SocialsScreen> {
   Social social = Social.instagram;
-  @override
-  void initState() {
-    super.initState();
-    //getInstaInfo.storeData(); - to test/print data values in the terminal
-  }
+  getInstaInfo insta = getInstaInfo();
+  TwitterApi twitterApi = TwitterApi();
 
   @override
+  void initState() {
+    getData();
+    super.initState();
+
+  }
+getData()async{
+  await twitterApi.storeData();
+}
+  @override
   Widget build(BuildContext context) {
+
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
