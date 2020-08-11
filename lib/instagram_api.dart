@@ -3,13 +3,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 
 String url = 'https://45b3d39e2c2b.ngrok.io/insta/mittechtatva';
-List caption = []; //list of the captions
-List shortcode =
-    []; //list of shortcode of each post - used to get the external url to link the user to the particular post;for posts- /p/<shortcode> , for igtv it is /tv/<shortcode>
-List likes = []; //stores no. of likes
-List display = [];
 
 class getInstaInfo {
+  List caption = []; //list of the captions
+  List shortcode =
+      []; //list of shortcode of each post - used to get the external url to link the user to the particular post;for posts- /p/<shortcode> , for igtv it is /tv/<shortcode>
+  List likes = []; //stores no. of likes
+  List display = [];
   //gets the data from the api, no need to modify or call this
   static Future<List> getData() async {
     try {
@@ -28,7 +28,7 @@ class getInstaInfo {
     }
   }
 
-  static Future storeData() async {
+  Future storeData() async {
     //this function is to be used to access and store the data each time we run the app
     List posts = await getData();
     print('got data');
