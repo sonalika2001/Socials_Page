@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import './instagram_api.dart';
-import './youtube_api.dart';
+import './api/instagram_api.dart';
+import './api/youtube_api.dart';
 import './container_properties.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -45,7 +45,7 @@ class _SocialsScreenState extends State<SocialsScreen> {
                         : height * (1 - 0.666667),
                     width: (social == Social.instagram) ? width : width / 2.0,
                     child: ContainerProperties(
-                      colour: Colors.red,
+                      colour: Colors.white,
                       icon: FontAwesomeIcons.instagram,
                     ),
                   ))),
@@ -91,7 +91,7 @@ class _SocialsScreenState extends State<SocialsScreen> {
                         : height * (1 - 0.666667),
                     width: (social == Social.youtube) ? width : width / 2.0,
                     child: ContainerProperties(
-                      colour: Colors.yellow,
+                      colour: Colors.red,
                       icon: FontAwesomeIcons.youtube,
                     ),
                   ))),

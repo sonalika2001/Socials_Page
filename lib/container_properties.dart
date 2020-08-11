@@ -15,12 +15,13 @@ class ContainerProperties extends StatelessWidget {
           Icon(
             icon,
             size: 70,
+            color: colour,
           )
         ],
       ),
       margin: EdgeInsets.all(10),
       decoration: BoxDecoration(
-        color: colour,
+        color: Color(0xFF1B1C21),
         borderRadius: BorderRadius.circular(10),
       ),
     );
