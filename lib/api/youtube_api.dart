@@ -1,8 +1,8 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-class getYoutubeInfo {
-  static String url = 'https://45b3d39e2c2b.ngrok.io/youtube/TechTatva';
+class GetYoutubeInfo {
+  static String url = 'https://348dca14e915.ngrok.io/youtube/TechTatva';
   static List videoURL =
       []; //will contain list of urls (on calling getYoutubeInfo.youtubePosts() ) that link to the youtube video
   static List thumbnailURL = []; //will contain list of urls of thumbnails
