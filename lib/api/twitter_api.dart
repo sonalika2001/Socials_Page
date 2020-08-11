@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 String url = 'https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=MITtechtatva&count=10';
-String token = "AAAAAAAAAAAAAAAAAAAAAFgHGwEAAAAAOqUaXqmYx53gZU0asDP7ahuqOao%3D5UngfGsGNe8dOOKDl1cpw8PsIb2z7u0M43NbsGN3AjMt0Bl9GN";
+String token = "";
 
 
 class TwitterApi{
