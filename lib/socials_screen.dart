@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'instagram_api.dart';
-import 'youtube_api.dart';
+import './instagram_api.dart';
+import './youtube_api.dart';
+import './container_properties.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class SocialsScreen extends StatefulWidget {
   @override
@@ -10,7 +12,7 @@ class SocialsScreen extends StatefulWidget {
 enum Social { instagram, youtube, twitter }
 
 class _SocialsScreenState extends State<SocialsScreen> {
-  Social social = Social.twitter;
+  Social social = Social.instagram;
   @override
   void initState() {
     super.initState();
@@ -19,15 +21,15 @@ class _SocialsScreenState extends State<SocialsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Stack(
         children: [
           AnimatedPositioned(
               duration: Duration(milliseconds: 500),
               curve: Curves.decelerate,
-              top: (social == Social.instagram)
-                  ? 0
-                  : MediaQuery.of(context).size.height * 0.666667,
+              top: (social == Social.instagram) ? 0 : height * 0.666667,
               left: 0,
               child: GestureDetector(
                   onTap: () {
@@ -39,22 +41,19 @@ class _SocialsScreenState extends State<SocialsScreen> {
                     duration: Duration(milliseconds: 500),
                     curve: Curves.decelerate,
                     height: (social == Social.instagram)
-                        ? MediaQuery.of(context).size.height * 0.666667
-                        : MediaQuery.of(context).size.height * (1 - 0.666667),
-                    width: (social == Social.instagram)
-                        ? MediaQuery.of(context).size.width
-                        : MediaQuery.of(context).size.width / 2.0,
-                    color: Colors.pinkAccent,
+                        ? height * 0.666667
+                        : height * (1 - 0.666667),
+                    width: (social == Social.instagram) ? width : width / 2.0,
+                    child: ContainerProperties(
+                      colour: Colors.red,
+                      icon: FontAwesomeIcons.instagram,
+                    ),
                   ))),
           AnimatedPositioned(
               duration: Duration(milliseconds: 500),
               curve: Curves.decelerate,
-              top: (social == Social.twitter)
-                  ? 0
-                  : MediaQuery.of(context).size.height * 0.666667,
-              left: (social == Social.youtube)
-                  ? MediaQuery.of(context).size.width / 2.0
-                  : 0,
+              top: (social == Social.twitter) ? 0 : height * 0.666667,
+              left: (social == Social.youtube) ? width / 2.0 : 0,
               child: GestureDetector(
                   onTap: () {
                     setState(() {
@@ -65,22 +64,19 @@ class _SocialsScreenState extends State<SocialsScreen> {
                     duration: Duration(milliseconds: 500),
                     curve: Curves.decelerate,
                     height: (social == Social.twitter)
-                        ? MediaQuery.of(context).size.height * 0.666667
-                        : MediaQuery.of(context).size.height * (1 - 0.666667),
-                    width: (social == Social.twitter)
-                        ? MediaQuery.of(context).size.width
-                        : MediaQuery.of(context).size.width / 2.0,
-                    color: Colors.blue,
+                        ? height * 0.666667
+                        : height * (1 - 0.666667),
+                    width: (social == Social.twitter) ? width : width / 2.0,
+                    child: ContainerProperties(
+                      colour: Colors.blue,
+                      icon: FontAwesomeIcons.twitter,
+                    ),
                   ))),
           AnimatedPositioned(
               duration: Duration(milliseconds: 500),
               curve: Curves.decelerate,
-              top: (social == Social.youtube)
-                  ? 0
-                  : MediaQuery.of(context).size.height * 0.666667,
-              left: (social == Social.youtube)
-                  ? 0
-                  : MediaQuery.of(context).size.width / 2.0,
+              top: (social == Social.youtube) ? 0 : height * 0.666667,
+              left: (social == Social.youtube) ? 0 : width / 2.0,
               child: GestureDetector(
                   onTap: () {
                     setState(() {
@@ -91,12 +87,13 @@ class _SocialsScreenState extends State<SocialsScreen> {
                     duration: Duration(milliseconds: 500),
                     curve: Curves.decelerate,
                     height: (social == Social.youtube)
-                        ? MediaQuery.of(context).size.height * 0.666667
-                        : MediaQuery.of(context).size.height * (1 - 0.666667),
-                    width: (social == Social.youtube)
-                        ? MediaQuery.of(context).size.width
-                        : MediaQuery.of(context).size.width / 2.0,
-                    color: Colors.red,
+                        ? height * 0.666667
+                        : height * (1 - 0.666667),
+                    width: (social == Social.youtube) ? width : width / 2.0,
+                    child: ContainerProperties(
+                      colour: Colors.yellow,
+                      icon: FontAwesomeIcons.youtube,
+                    ),
                   ))),
         ],
       ),
