@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:socials_page/api/twitter_api.dart';
+import 'package:socials_page/pages/youtube.dart';
 import './api/instagram_api.dart';
 
 import './container_properties.dart';
@@ -12,6 +13,8 @@ class SocialsScreen extends StatefulWidget {
 
 enum Social { instagram, youtube, twitter }
 
+GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey();
+
 class _SocialsScreenState extends State<SocialsScreen> {
   Social social = Social.instagram;
   getInstaInfo insta = getInstaInfo();
@@ -21,17 +24,18 @@ class _SocialsScreenState extends State<SocialsScreen> {
   void initState() {
     getData();
     super.initState();
-
   }
-getData()async{
-  await twitterApi.storeData();
-}
+
+  getData() async {
+    await twitterApi.storeData();
+  }
+
   @override
   Widget build(BuildContext context) {
-
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
+      key: scaffoldKey,
       body: Stack(
         children: [
           AnimatedPositioned(
@@ -53,8 +57,12 @@ getData()async{
                         : height * (1 - 0.666667),
                     width: (social == Social.instagram) ? width : width / 2.0,
                     child: ContainerProperties(
+                      enabled: social == Social.instagram,
                       colour: Colors.white,
                       icon: FontAwesomeIcons.instagram,
+                      child: Container(
+                        color: Colors.pink,
+                      ),
                     ),
                   ))),
           AnimatedPositioned(
@@ -76,8 +84,12 @@ getData()async{
                         : height * (1 - 0.666667),
                     width: (social == Social.twitter) ? width : width / 2.0,
                     child: ContainerProperties(
+                      enabled: social == Social.twitter,
                       colour: Colors.blue,
                       icon: FontAwesomeIcons.twitter,
+                      child: Container(
+                        color: Colors.purple,
+                      ),
                     ),
                   ))),
           AnimatedPositioned(
@@ -99,8 +111,12 @@ getData()async{
                         : height * (1 - 0.666667),
                     width: (social == Social.youtube) ? width : width / 2.0,
                     child: ContainerProperties(
+                      enabled: social == Social.youtube,
                       colour: Colors.red,
                       icon: FontAwesomeIcons.youtube,
+                      child: YouTube(
+                        scale: social == Social.youtube ? 1 : 0.5,
+                      ),
                     ),
                   ))),
         ],
