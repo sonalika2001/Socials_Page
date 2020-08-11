@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'instagram_api.dart';
+import 'youtube_api.dart';
 
 class SocialsScreen extends StatefulWidget {
   @override
@@ -9,6 +11,11 @@ enum Social { instagram, youtube, twitter }
 
 class _SocialsScreenState extends State<SocialsScreen> {
   Social social = Social.twitter;
+  @override
+  void initState() {
+    super.initState();
+    //getInstaInfo.storeData(); - to test/print data values in the terminal
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +23,7 @@ class _SocialsScreenState extends State<SocialsScreen> {
       body: Stack(
         children: [
           AnimatedPositioned(
-              duration: Duration( milliseconds: 500),
+              duration: Duration(milliseconds: 500),
               curve: Curves.decelerate,
               top: (social == Social.instagram)
                   ? 0
@@ -29,7 +36,7 @@ class _SocialsScreenState extends State<SocialsScreen> {
                     });
                   },
                   child: AnimatedContainer(
-                    duration: Duration( milliseconds: 500),
+                    duration: Duration(milliseconds: 500),
                     curve: Curves.decelerate,
                     height: (social == Social.instagram)
                         ? MediaQuery.of(context).size.height * 0.666667
@@ -40,7 +47,7 @@ class _SocialsScreenState extends State<SocialsScreen> {
                     color: Colors.pinkAccent,
                   ))),
           AnimatedPositioned(
-              duration: Duration( milliseconds: 500),
+              duration: Duration(milliseconds: 500),
               curve: Curves.decelerate,
               top: (social == Social.twitter)
                   ? 0
@@ -55,7 +62,7 @@ class _SocialsScreenState extends State<SocialsScreen> {
                     });
                   },
                   child: AnimatedContainer(
-                    duration: Duration( milliseconds: 500),
+                    duration: Duration(milliseconds: 500),
                     curve: Curves.decelerate,
                     height: (social == Social.twitter)
                         ? MediaQuery.of(context).size.height * 0.666667
@@ -66,7 +73,7 @@ class _SocialsScreenState extends State<SocialsScreen> {
                     color: Colors.blue,
                   ))),
           AnimatedPositioned(
-              duration: Duration( milliseconds: 500),
+              duration: Duration(milliseconds: 500),
               curve: Curves.decelerate,
               top: (social == Social.youtube)
                   ? 0
@@ -81,7 +88,7 @@ class _SocialsScreenState extends State<SocialsScreen> {
                     });
                   },
                   child: AnimatedContainer(
-                    duration: Duration( milliseconds: 500),
+                    duration: Duration(milliseconds: 500),
                     curve: Curves.decelerate,
                     height: (social == Social.youtube)
                         ? MediaQuery.of(context).size.height * 0.666667
