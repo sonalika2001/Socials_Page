@@ -71,12 +71,10 @@ class Blur extends StatelessWidget {
   Widget build(BuildContext context) {
     return BackdropFilter(
       filter: ImageFilter.blur(sigmaX: blur, sigmaY: blur),
-      child: Expanded(
-        child: Container(
-          decoration: BoxDecoration(
-            color: shade.withOpacity(opacity),
-            borderRadius: BorderRadius.circular(10),
-          ),
+      child: Container(
+        decoration: BoxDecoration(
+          color: shade.withOpacity(opacity),
+          borderRadius: BorderRadius.circular(10),
         ),
       ),
     );

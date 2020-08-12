@@ -58,7 +58,7 @@ class _SocialsScreenState extends State<SocialsScreen> {
                       colour: Colors.white,
                       icon: FontAwesomeIcons.instagram,
                       child: Container(
-                        color: Colors.pink,
+                        color: Colors.pinkAccent,
                       ),
                     ),
                   ))),
@@ -85,7 +85,7 @@ class _SocialsScreenState extends State<SocialsScreen> {
                       colour: Colors.blue,
                       icon: FontAwesomeIcons.twitter,
                       child: Container(
-                        color: Colors.purple,
+                        color: Colors.blueAccent,
                       ),
                     ),
                   ))),
