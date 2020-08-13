@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:socials_page/api/twitter_api.dart';
+import 'package:socials_page/pages/twitter.dart';
 import 'package:socials_page/pages/youtube.dart';
 import './api/instagram_api.dart';
 
@@ -16,18 +16,6 @@ enum Social { instagram, youtube, twitter }
 class _SocialsScreenState extends State<SocialsScreen> {
   Social social = Social.instagram;
   getInstaInfo insta = getInstaInfo();
-  TwitterApi twitterApi = TwitterApi();
-
-  @override
-  void initState() {
-    getData();
-    super.initState();
-  }
-
-  getData() async {
-    await twitterApi.storeData();
-    
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -81,14 +69,7 @@ class _SocialsScreenState extends State<SocialsScreen> {
                         ? height * 0.666667
                         : height * (1 - 0.666667),
                     width: (social == Social.twitter) ? width : width / 2.0,
-                    child: ContainerProperties(
-                      enabled: social == Social.twitter,
-                      colour: Colors.blue,
-                      icon: FontAwesomeIcons.twitter,
-                      child: Container(
-                        color: Colors.blueAccent,
-                      ),
-                    ),
+                    child: Twitter(social: social),
                   ))),
           AnimatedPositioned(
               duration: Duration(milliseconds: 500),
