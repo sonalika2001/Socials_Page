@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../api/youtube_api.dart';
@@ -117,9 +118,8 @@ class _YouTubeState extends State<YouTube> {
                 itemCount: GetYoutubeInfo.videoTitle.length,
               )
             : Center(
-                child: CircularProgressIndicator(
-                  backgroundColor: Colors.white,
-                  valueColor: AlwaysStoppedAnimation(Colors.redAccent),
+                child: SpinKitPouringHourglass(
+                  color: Color(0xFFD0312D),
                 ),
               ));
   }
