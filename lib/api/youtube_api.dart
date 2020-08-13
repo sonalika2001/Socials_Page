@@ -34,10 +34,6 @@ class GetYoutubeInfo {
         thumbnailURL.add('${post['thumbnail']}'); //added thumbnail url
         videoDuration.add('${post['time']}');
       }
-      print(videoDuration);
-      print(videoURL);
-      print(thumbnailURL);
-      print(videoTitle);
     }
   }
 }
