@@ -11,9 +11,13 @@ class GetYoutubeInfo {
   static Future getData() async {
     try {
       http.Response _response = await http.get(url);
-      var body = jsonDecode(_response.body);
-      var video = body['data'];
-      return video;
+      if(_response.statusCode == 200){
+        var body = jsonDecode(_response.body);
+        var video = body['data'];
+        return video;
+      }
+      else
+        print(_response.statusCode);
     } catch (e) {
       print(e);
     }
@@ -22,13 +26,13 @@ class GetYoutubeInfo {
   static Future youtubePosts() async {
     //this function needs to be called to fetch the data for videoURL,thumbnailURL,videoTitle and store it in the above mentioned lists
     var posts = await getData();
-    print('reached here');
-    for (var post in posts.keys) {
-      //looping through data
-      videoTitle.add('$post'); //added caption
-      videoURL.add(posts[post]['link']); //added video url
-      thumbnailURL.add(posts[post]['thumbnail']); //added thumbnail url
-    }
-    print('over');
+if(posts != null) {
+  for (var post in posts.keys) {
+    //looping through data
+    videoTitle.add('$post'); //added caption
+    videoURL.add(posts[post]['link']); //added video url
+    thumbnailURL.add(posts[post]['thumbnail']); //added thumbnail url
+  }
+}
   }
 }

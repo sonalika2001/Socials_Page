@@ -26,6 +26,7 @@ class _SocialsScreenState extends State<SocialsScreen> {
 
   getData() async {
     await twitterApi.storeData();
+    
   }
 
   @override
