@@ -24,7 +24,8 @@ class _YouTubeState extends State<YouTube> {
     });
   }
 
-  Widget youTubewidget(String title, String url, String thumbnail) {
+  Widget youTubewidget(
+      String title, String url, String thumbnail, String duration) {
     return GestureDetector(
       onTap: () async {
         if (await canLaunch(url))
@@ -83,7 +84,14 @@ class _YouTubeState extends State<YouTube> {
               FontAwesomeIcons.play,
               size: 50 * widget.scale,
             ),
-          )
+          ),
+          Align(
+            alignment: Alignment.topRight,
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 8 * widget.scale),
+              child: Text(duration),
+            ),
+          ),
         ]),
       ),
     );
@@ -102,6 +110,7 @@ class _YouTubeState extends State<YouTube> {
                       GetYoutubeInfo.videoTitle[index],
                       GetYoutubeInfo.videoURL[index],
                       GetYoutubeInfo.thumbnailURL[index],
+                      GetYoutubeInfo.videoDuration[index],
                     ),
                   );
                 },
