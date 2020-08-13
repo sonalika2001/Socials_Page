@@ -32,7 +32,7 @@ class GetYoutubeInfo {
         videoTitle.add('${post['title']}'); //added caption
         videoURL.add('${post['link']}'); //added video url
         thumbnailURL.add('${post['thumbnail']}'); //added thumbnail url
-        videoDuration.add('${post['time']}');
+        videoDuration.add('${post['time']}'); //added video duration
       }
     }
   }
