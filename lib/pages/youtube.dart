@@ -117,7 +117,10 @@ class _YouTubeState extends State<YouTube> {
                 itemCount: GetYoutubeInfo.videoTitle.length,
               )
             : Center(
-                child: Text('Please wait'),
+                child: CircularProgressIndicator(
+                  backgroundColor: Colors.white,
+                  valueColor: AlwaysStoppedAnimation(Colors.redAccent),
+                ),
               ));
   }
 }
