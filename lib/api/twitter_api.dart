@@ -1,18 +1,18 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-String url = 'https://api.twitter.com/1.1/search/tweets.json?q=%23covid19&src=typed_query&count=10&f=live';
-String token = "AAAAAAAAAAAAAAAAAAAAAFgHGwEAAAAAUzIEfdNog1Yn3fV77lyaDr%2FZI0A%3D8htW37Xn5LKKRdikjkSRuWAJnoIBzcprtnJ7K9fbUY6yDyZCl3";
+String url =
+    'https://api.twitter.com/1.1/search/tweets.json?q=%23covid19&src=typed_query&count=10&f=live';
+String token = "";
 
-
-class TwitterApi{
-
+class TwitterApi {
   List texts = [];
   List<List> hashtags = [];
 
   static Future<List> getData() async {
     try {
-      http.Response _response = await http.get(url , headers : {"authorization" : "Bearer " + token});
+      http.Response _response =
+          await http.get(url, headers: {"authorization": "Bearer " + token});
       if (_response.statusCode == 200) {
         var body = jsonDecode(_response.body);
         List posts = body["statuses"];
