@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:socials_page/pages/twitter.dart';
 import 'package:socials_page/pages/youtube.dart';
 import './api/instagram_api.dart';
-
-import './container_properties.dart';
+import 'pages/instagram.dart';
+import 'widgets/container_properties.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class SocialsScreen extends StatefulWidget {
@@ -13,15 +13,18 @@ class SocialsScreen extends StatefulWidget {
 
 enum Social { instagram, youtube, twitter }
 
+GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
+
 class _SocialsScreenState extends State<SocialsScreen> {
   Social social = Social.instagram;
-  getInstaInfo insta = getInstaInfo();
+  GetInstaInfo insta = GetInstaInfo();
 
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
+      key: scaffoldKey,
       body: Stack(
         children: [
           AnimatedPositioned(
@@ -46,8 +49,8 @@ class _SocialsScreenState extends State<SocialsScreen> {
                       enabled: social == Social.instagram,
                       colour: Colors.white,
                       icon: FontAwesomeIcons.instagram,
-                      child: Container(
-                        color: Colors.pinkAccent,
+                      child: Instagram(
+                        scale: social == Social.instagram ? 1 : 0.5,
                       ),
                     ),
                   ))),
