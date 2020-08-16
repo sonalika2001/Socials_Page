@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 String url =
-    'https://api.twitter.com/1.1/search/tweets.json?q=%23covid19&src=typed_query&count=10&f=live';
+    'https://api.twitter.com/1.1/search/tweets.json?q=%23covid19&src=typed_query&count=50&f=live';
 String token = "";
 
 class TwitterApi {
@@ -13,8 +13,10 @@ class TwitterApi {
     try {
       http.Response _response =
           await http.get(url, headers: {"authorization": "Bearer " + token});
+
       if (_response.statusCode == 200) {
         var body = jsonDecode(_response.body);
+        print(_response.body);
         List posts = body["statuses"];
 
         return posts;

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:socials_page/api/twitter_api.dart';
 import 'package:socials_page/widgets/container_properties.dart';
@@ -15,11 +16,17 @@ class Twitter extends StatefulWidget {
 
 class _TwitterState extends State<Twitter> {
   TwitterApi _twitterApi = TwitterApi();
-
+bool loading = true;
   @override
   void initState() {
-    _twitterApi.storeData();
+    getData();
     super.initState();
+  }
+  getData() async{
+    await  _twitterApi.storeData();
+    setState(() {
+      loading = false;
+    });
   }
 
   @override
@@ -28,7 +35,7 @@ class _TwitterState extends State<Twitter> {
       icon: FontAwesomeIcons.twitter,
       colour: Colors.blue,
       enabled: widget.social == Social.twitter,
-      child: Container(
+      child: !loading ? Container(
         padding: EdgeInsets.all(8.0),
         color: Colors.blue,
         child: Column(
@@ -75,7 +82,10 @@ class _TwitterState extends State<Twitter> {
                     }))
           ],
         ),
-      ),
-    );
+      ):Center(
+        child: SpinKitPouringHourglass(
+          color: Colors.blue,
+        ),
+      ));
   }
 }

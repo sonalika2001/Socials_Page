@@ -135,7 +135,7 @@ class _InstagramState extends State<Instagram> {
               )
             : Center(
                 child: SpinKitPouringHourglass(
-                  color: Color(0xFFD0312D),
+                  color: Colors.pinkAccent,
                 ),
               ));
   }
