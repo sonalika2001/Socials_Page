@@ -2,14 +2,13 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 String url = 'https://45b3d39e2c2b.ngrok.io/insta/mittechtatva';
+List caption = []; //list of the captions
+List shortcode =
+    []; //list of shortcode of each post - used to get the external url to link the user to the particular post;for posts- /p/<shortcode> , for igtv it is /tv/<shortcode>
+List likes = []; //stores no. of likes
+List display = []; //stores the photos/video urls
 
-class getInstaInfo {
-  List caption = []; //list of the captions
-  List shortcode =
-      []; //list of shortcode of each post - used to get the external url to link the user to the particular post;for posts- /p/<shortcode> , for igtv it is /tv/<shortcode>
-  List likes = []; //stores no. of likes
-  List display = []; //stores the photos/video urls
-
+class GetInstaInfo {
   //gets the data from the api, no need to modify or call this
   static Future<List> getData() async {
     try {
@@ -44,11 +43,11 @@ class getInstaInfo {
           '${eachpost['node']['__typename']}'; //this variable stores whether a particular post consists of just one thread or multiple
       //if postType is GraphSidecar its a multiple thread (multiple posts in one post)
       if (postType == 'GraphSidecar') {
-        getInstaInfo().displayData(eachpost, postType);
+        GetInstaInfo().displayData(eachpost, postType);
       }
       //if single post
       else {
-        getInstaInfo().displayData(eachpost, postType);
+        GetInstaInfo().displayData(eachpost, postType);
       }
     }
     //IMPORTANT: Add print statements here to print(in the terminal) the data lists that have been stored and see their structure and working

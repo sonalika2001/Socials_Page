@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:socials_page/api/twitter_api.dart';
-import 'package:socials_page/container_properties.dart';
+import 'package:socials_page/widgets/container_properties.dart';
 import 'package:socials_page/socials_screen.dart';
 
 class Twitter extends StatefulWidget {

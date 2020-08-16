@@ -30,21 +30,18 @@ class TwitterApi {
     List posts = await getData();
 
     List temp = List();
-    if(posts!= null){
-      for(int i = 0; i < posts.length; i++) {
+    if (posts != null) {
+      for (int i = 0; i < posts.length; i++) {
         temp = [];
         texts.add(posts[i]['text'].toString());
 
-        if(posts[i]["entities"]["hashtags"] != null){
-        for (var tag in posts[i]["entities"]["hashtags"]) {
-          temp.add(tag["text"]);
+        if (posts[i]["entities"]["hashtags"] != null) {
+          for (var tag in posts[i]["entities"]["hashtags"]) {
+            temp.add(tag["text"]);
+          }
         }
-
-      }
         hashtags.add(temp);
       }
     }
   }
-
 }
-
