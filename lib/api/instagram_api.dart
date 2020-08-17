@@ -1,9 +1,9 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-
-String url = 'https://79ac70d3e164.ngrok.io/insta/mittechtatva';
+import 'package:socials_page/api_path.dart';
 
 class getInstaInfo {
+  static String url;
   List caption = []; //list of the captions
   List shortcode =
       []; //list of shortcode of each post - used to get the external url to link the user to the particular post;for posts- /p/<shortcode> , for igtv it is /tv/<shortcode>
@@ -13,6 +13,8 @@ class getInstaInfo {
   //gets the data from the api, no need to modify or call this
   static Future<List> getData() async {
     try {
+      await getURL.jsonPath();
+      url = '${getURL.instaURL}mittechtatva';
       http.Response _response = await http.get(url);
       if (_response.statusCode == 200) {
         print('reached here');

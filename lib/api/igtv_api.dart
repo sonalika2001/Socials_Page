@@ -1,9 +1,9 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-
-String url = 'https://79ac70d3e164.ngrok.io/insta/mittechtatva';
+import 'package:socials_page/api_path.dart';
 
 class getIgtvInfo {
+  static String url;
   List igtvCaption = [];
   List igtvTitle =
       []; //a title for the igtv video, use this instead of caption if caption takes up lot of space on screen
@@ -14,6 +14,8 @@ class getIgtvInfo {
 
   static Future getIgtvData() async {
     try {
+      await getURL.jsonPath();
+      url = '${getURL.instaURL}mittechtatva';
       http.Response _response = await http.get(url);
       if (_response.statusCode == 200) {
         print('reached here');

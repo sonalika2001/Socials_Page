@@ -1,8 +1,9 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:socials_page/api_path.dart';
 
 class GetYoutubeInfo {
-  static String url = 'https://79ac70d3e164.ngrok.io/youtube/TechTatva';
+  static String url;
   static List videoURL =
       []; //will contain list of urls (on calling getYoutubeInfo.youtubePosts() ) that link to the youtube video
   static List thumbnailURL = []; //will contain list of urls of thumbnails
@@ -11,6 +12,8 @@ class GetYoutubeInfo {
 
   static Future getData() async {
     try {
+      await getURL.jsonPath();
+      url = '${getURL.youtubeURL}TechTatva';
       http.Response _response = await http.get(url);
       if (_response.statusCode == 200) {
         var body = jsonDecode(_response.body);
