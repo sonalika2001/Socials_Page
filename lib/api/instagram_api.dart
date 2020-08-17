@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-String url = 'https://45b3d39e2c2b.ngrok.io/insta/mittechtatva';
+String url = 'https://79ac70d3e164.ngrok.io/insta/mittechtatva';
 
 class getInstaInfo {
   List caption = []; //list of the captions
@@ -59,6 +59,9 @@ class getInstaInfo {
     if (postType == 'GraphSideCar') {
       List multiple =
           []; //this list will store all the display data for a post with multiple threads
+
+      multiple.add('multiple');
+
       for (var multipleposts in singlepost['node']['edge_sidecar_to_children']
           ['edges']) {
         //looping over each post in the multiple thread and adding them to the list multiple[]
@@ -100,7 +103,7 @@ display[
 [<postType>,<urls>],   -------^
 [<postType>,<urls>],   -------^
 [<postType>,<urls>],   -------^
- [                       ------> for multiple posts
+ [ 'multiple',          ------> for multiple posts
    [<postType>,<urls>],   ------>each post inside the multiple posts
    [<postType>,<urls>],   --------^
  ]
