@@ -1,17 +1,20 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:socials_page/api_path.dart';
 
-String url = 'https://45b3d39e2c2b.ngrok.io/insta/mittechtatva';
-List caption = []; //list of the captions
-List shortcode =
-    []; //list of shortcode of each post - used to get the external url to link the user to the particular post;for posts- /p/<shortcode> , for igtv it is /tv/<shortcode>
-List likes = []; //stores no. of likes
-List display = []; //stores the photos/video urls
+class getInstaInfo {
+  static String url;
+  List caption = []; //list of the captions
+  List shortcode =
+      []; //list of shortcode of each post - used to get the external url to link the user to the particular post;for posts- /p/<shortcode> , for igtv it is /tv/<shortcode>
+  List likes = []; //stores no. of likes
+  List display = []; //stores the photos/video urls
 
-class GetInstaInfo {
   //gets the data from the api, no need to modify or call this
   static Future<List> getData() async {
     try {
+      await getURL.jsonPath();
+      url = '${getURL.instaURL}mittechtatva';
       http.Response _response = await http.get(url);
       if (_response.statusCode == 200) {
         print('reached here');
@@ -43,11 +46,11 @@ class GetInstaInfo {
           '${eachpost['node']['__typename']}'; //this variable stores whether a particular post consists of just one thread or multiple
       //if postType is GraphSidecar its a multiple thread (multiple posts in one post)
       if (postType == 'GraphSidecar') {
-        GetInstaInfo().displayData(eachpost, postType);
+        getInstaInfo().displayData(eachpost, postType);
       }
       //if single post
       else {
-        GetInstaInfo().displayData(eachpost, postType);
+        getInstaInfo().displayData(eachpost, postType);
       }
     }
     //IMPORTANT: Add print statements here to print(in the terminal) the data lists that have been stored and see their structure and working
@@ -58,6 +61,9 @@ class GetInstaInfo {
     if (postType == 'GraphSideCar') {
       List multiple =
           []; //this list will store all the display data for a post with multiple threads
+
+      multiple.add('multiple');
+
       for (var multipleposts in singlepost['node']['edge_sidecar_to_children']
           ['edges']) {
         //looping over each post in the multiple thread and adding them to the list multiple[]
@@ -99,7 +105,7 @@ display[
 [<postType>,<urls>],   -------^
 [<postType>,<urls>],   -------^
 [<postType>,<urls>],   -------^
- [                       ------> for multiple posts
+ [ 'multiple',          ------> for multiple posts
    [<postType>,<urls>],   ------>each post inside the multiple posts
    [<postType>,<urls>],   --------^
  ]
