@@ -28,11 +28,11 @@ class ContainerProperties extends StatelessWidget {
           ),
           (!enabled)
               ? Container(
-                  child: Blur(
+                 /* child: Blur(
                     opacity: 0.8,
                     blur: 0.6,
                     shade: Colors.grey[100],
-                  ),
+                  ),*/
                 )
               : SizedBox.shrink(),
           (!enabled)

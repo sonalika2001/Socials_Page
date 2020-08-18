@@ -72,7 +72,11 @@ class _SocialsScreenState extends State<SocialsScreen> {
                         ? height * 0.666667
                         : height * (1 - 0.666667),
                     width: (social == Social.twitter) ? width : width / 2.0,
-                    child: Twitter(social: social),
+                    child: ContainerProperties(
+                        enabled: social == Social.twitter,
+                        colour: Colors.blue,
+                        icon:FontAwesomeIcons.twitter,
+                        child: Twitter(social: social)),
                   ))),
           AnimatedPositioned(
               duration: Duration(milliseconds: 500),

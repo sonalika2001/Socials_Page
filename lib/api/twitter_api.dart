@@ -8,6 +8,9 @@ String token = "";
 class TwitterApi {
   List texts = [];
   List<List> hashtags = [];
+  List user_name = [];
+  List screen_name = [];
+  List image_url = [];
 
   static Future<List> getData() async {
     try {
@@ -16,9 +19,7 @@ class TwitterApi {
 
       if (_response.statusCode == 200) {
         var body = jsonDecode(_response.body);
-        print(_response.body);
         List posts = body["statuses"];
-
         return posts;
       }
       print(_response.statusCode);
@@ -30,18 +31,21 @@ class TwitterApi {
   Future storeData() async {
     //this function is to be used to access and store the data each time we run the app
     List posts = await getData();
-
     List temp = List();
     if (posts != null) {
       for (int i = 0; i < posts.length; i++) {
         temp = [];
         texts.add(posts[i]['text'].toString());
-
+        user_name.add(posts[i]["user"]["name"]);
+        screen_name.add(posts[i]["user"]["screen_name"]);
+        print(posts[i]["protected"]);
+        image_url.add(posts[i]["user"]["profile_image_url"]);
         if (posts[i]["entities"]["hashtags"] != null) {
           for (var tag in posts[i]["entities"]["hashtags"]) {
             temp.add(tag["text"]);
           }
         }
+
         hashtags.add(temp);
       }
     }
