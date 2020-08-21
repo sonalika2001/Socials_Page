@@ -18,9 +18,11 @@ class _InstagramVideoState extends State<InstagramVideo> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    print('Initializing video ${widget.url}');
     videoController = VideoPlayerController.network(widget.url)
       ..initialize().then((_) {
-        videoController.play();
+        print(videoController.value.initialized);
+        print(videoController.value.isPlaying);
       });
   }
 
