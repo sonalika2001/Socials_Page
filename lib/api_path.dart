@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class getURL {
-  static String instaURL, youtubeURL;
+  static String instaIgtvURL, instaPostURL, youtubeURL;
   static Future jsonPath() async {
     try {
       http.Response _response =
@@ -11,9 +11,13 @@ class getURL {
         print('reached here');
         var body = jsonDecode(_response.body);
         print('got body');
-        instaURL = '${body['insta']}';
+
+        instaIgtvURL = '${body['igtv']}';
+        instaPostURL = '${body['posts']}';
         youtubeURL = '${body['youtube']}';
-        print(instaURL);
+
+        print(instaIgtvURL);
+        print(instaPostURL);
         print(youtubeURL);
       }
     } catch (e) {

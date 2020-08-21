@@ -15,7 +15,7 @@ class getIgtvInfo {
   static Future getIgtvData() async {
     try {
       await getURL.jsonPath();
-      url = '${getURL.instaURL}mittechtatva';
+      url = '${getURL.instaIgtvURL}mittechtatva';
       http.Response _response = await http.get(url);
       if (_response.statusCode == 200) {
         print('reached here');

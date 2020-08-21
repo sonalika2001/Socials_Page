@@ -2,28 +2,29 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:socials_page/api_path.dart';
 
-class getInstaInfo {
+List caption = []; //list of the captions
+List shortcode =
+    []; //list of shortcode of each post - used to get the external url to link the user to the particular post;for posts- /p/<shortcode> , for igtv it is /tv/<shortcode>
+List likes = []; //stores no. of likes
+List display = []; //stores the photos/video urls
+
+class GetInstaInfo {
   static String url;
-  List caption = []; //list of the captions
-  List shortcode =
-      []; //list of shortcode of each post - used to get the external url to link the user to the particular post;for posts- /p/<shortcode> , for igtv it is /tv/<shortcode>
-  List likes = []; //stores no. of likes
-  List display = []; //stores the photos/video urls
 
   //gets the data from the api, no need to modify or call this
   static Future<List> getData() async {
     try {
       await getURL.jsonPath();
-      url = '${getURL.instaURL}mittechtatva';
+      url = '${getURL.instaPostURL}mittechtatva';
       http.Response _response = await http.get(url);
       if (_response.statusCode == 200) {
         print('reached here');
         var body = jsonDecode(_response.body);
-        print('got body');
-        List posts = body['entry_data']['ProfilePage'][0]['graphql']['user']
-            ['edge_owner_to_timeline_media']['edges'];
-        print('got posts');
-        return posts;
+        print('got $body');
+        // List posts = body['entry_data']['ProfilePage'][0]['graphql']['user']
+        //     ['edge_owner_to_timeline_media']['edges'];
+        // print('got posts');
+        return body['edges'];
       }
     } catch (e) {
       print(e);
@@ -46,11 +47,11 @@ class getInstaInfo {
           '${eachpost['node']['__typename']}'; //this variable stores whether a particular post consists of just one thread or multiple
       //if postType is GraphSidecar its a multiple thread (multiple posts in one post)
       if (postType == 'GraphSidecar') {
-        getInstaInfo().displayData(eachpost, postType);
+        displayData(eachpost, postType);
       }
       //if single post
       else {
-        getInstaInfo().displayData(eachpost, postType);
+        displayData(eachpost, postType);
       }
     }
     //IMPORTANT: Add print statements here to print(in the terminal) the data lists that have been stored and see their structure and working
