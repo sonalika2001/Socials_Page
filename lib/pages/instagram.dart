@@ -23,9 +23,19 @@ class _InstagramState extends State<Instagram> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    _getData();
   }
 
-  _showDialog(String caption, String url, var display, String likes) {
+  Future<void> _getData() async {
+    await GetInstaInfo().storeData().then((value) {
+      setState(() {
+        fetched = true;
+      });
+    });
+  }
+
+  _showDialog(String caption, String url, var display, var likes) {
+    print(display);
     showDialog(
       context: scaffoldKey.currentContext,
       builder: (context) {
@@ -33,22 +43,24 @@ class _InstagramState extends State<Instagram> {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(5),
           ),
-          child: instagramwidget(caption, url, display[1], likes,
+          child: instagramwidget(caption, url, display, likes, 100, 100,
               insideDialog: true),
         );
       },
     );
   }
 
-  Widget instagramwidget(String caption, String url, var display, String likes,
+  Widget instagramwidget(String caption, String url, var display, var likes,
+      double height, double width,
       {bool insideDialog = false}) {
     return GestureDetector(
       onTap: () async {
         if (insideDialog) {
           return;
         }
-        if (display.runtimeType == String) {
+        if (display[0] == 'image' || display[0] == 'multiple') {
           String tempUrl = 'https://www.instagram.com/p/$url';
+          print(tempUrl);
           if (await canLaunch(tempUrl))
             await launch(tempUrl);
           else
@@ -58,31 +70,35 @@ class _InstagramState extends State<Instagram> {
         }
       },
       child: Container(
-        height: 100 * widget.scale,
-        width: 100 * widget.scale,
+        height: height * widget.scale,
+        width: width * widget.scale,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           color: Colors.black,
         ),
         child: Column(children: [
           Container(
-            child: Stack(fit: StackFit.expand, children: [
+            child: Stack(children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(10),
                 child: Container(
+                  height: (height - 100) * widget.scale,
+                  width: width * widget.scale,
                   child: insideDialog
                       ? InstagramVideo(
-                          url: display,
+                          url: display[2],
                         )
                       : CachedNetworkImage(
-                          imageUrl: (display.runtimeType == String)
-                              ? display
-                              : display[0],
+                          imageUrl:
+                              (display[0] == 'image' || display[0] == 'video')
+                                  ? display[1]
+                                  : display[1][1],
                           fit: BoxFit.fill,
                         ),
                 ),
               ),
-              (display.runtimeType == String && !insideDialog)
+              ((display[0] == 'image' || display[0] == 'multiple') &&
+                      !insideDialog)
                   ? SizedBox.shrink()
                   : Align(
                       alignment: Alignment.center,
@@ -93,20 +109,22 @@ class _InstagramState extends State<Instagram> {
                     )
             ]),
           ),
-          Container(
-            height: 100 * widget.scale,
-            width: 100 * widget.scale,
-            color: Colors.white,
-            child: Column(children: [
-              Padding(
-                padding: EdgeInsets.all(5),
-                child: Text(likes),
-              ),
-              Wrap(
-                children: [Text(caption)],
-              ),
-            ]),
-          ),
+          (!insideDialog)
+              ? Container(
+                  height: 100 * widget.scale,
+                  width: width * widget.scale,
+                  color: Colors.white,
+                  child: Column(children: [
+                    Padding(
+                      padding: EdgeInsets.all(5),
+                      child: Text('♥ $likes'),
+                    ),
+                    Wrap(
+                      children: [Text(caption)],
+                    )
+                  ]),
+                )
+              : SizedBox.shrink(),
         ]),
       ),
     );
@@ -121,16 +139,12 @@ class _InstagramState extends State<Instagram> {
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: EdgeInsets.all(10 * widget.scale),
-                    child: instagramwidget(
-                      caption[index],
-                      url[index],
-                      display[index],
-                      likes[index],
-                    ),
+                    child: instagramwidget(caption[index], shortcode[index],
+                        display[index], likes[index], 200, 200),
                   );
                 },
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2),
+                    crossAxisCount: 1),
                 itemCount: caption.length,
               )
             : Center(
