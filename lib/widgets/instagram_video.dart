@@ -13,17 +13,12 @@ class InstagramVideo extends StatefulWidget {
 
 class _InstagramVideoState extends State<InstagramVideo> {
   VideoPlayerController videoController;
-
+  Future<void> _initializeVideoPlayerFuture;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    print('Initializing video ${widget.url}');
-    videoController = VideoPlayerController.network(widget.url)
-      ..initialize().then((_) {
-        print(videoController.value.initialized);
-        print(videoController.value.isPlaying);
-      });
+    videoController = VideoPlayerController.network(widget.url);
+    _initializeVideoPlayerFuture = videoController.initialize();
   }
 
   @override
@@ -35,29 +30,25 @@ class _InstagramVideoState extends State<InstagramVideo> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        child: videoController.value.initialized
-            ? GestureDetector(
-                onTap: () {
-                  videoController.value.isPlaying
-                      ? videoController.pause()
-                      : videoController.play();
-                },
-                child: Stack(fit: StackFit.expand, children: [
-                  AspectRatio(
-                    aspectRatio: videoController.value.aspectRatio,
-                    child: VideoPlayer(videoController),
-                  ),
-                  (videoController.value.isPlaying)
-                      ? SizedBox.shrink()
-                      : Align(
-                          alignment: Alignment.center,
-                          child: Icon(
-                            FontAwesomeIcons.play,
-                            size: 50,
-                          ),
-                        ),
-                ]),
-              )
-            : Center(child: Text('Loading')));
+        child: FutureBuilder(
+      future: _initializeVideoPlayerFuture,
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.done) {
+          print("done");
+          videoController.play();
+          return Container(
+            child: AspectRatio(
+              aspectRatio: videoController.value.aspectRatio,
+              child: VideoPlayer(videoController),
+            ),
+          );
+        } else {
+          print(snapshot.connectionState);
+          return Center(
+            child: Text("Loading"),
+          );
+        }
+      },
+    ));
   }
 }

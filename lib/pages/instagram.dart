@@ -21,7 +21,6 @@ class _InstagramState extends State<Instagram> {
   bool fetched = false;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _getData();
   }
@@ -43,7 +42,7 @@ class _InstagramState extends State<Instagram> {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(5),
           ),
-          child: instagramwidget(caption, url, display, likes, 100, 100,
+          child: instagramwidget(caption, url, display, likes, 200, 200,
               insideDialog: true),
         );
       },
@@ -85,8 +84,12 @@ class _InstagramState extends State<Instagram> {
                   height: (height - 100) * widget.scale,
                   width: width * widget.scale,
                   child: insideDialog
-                      ? InstagramVideo(
-                          url: display[2],
+                      ? Container(
+                          padding: EdgeInsets.all(8.0),
+                          color: Colors.white,
+                          child: InstagramVideo(
+                            url: display[2],
+                          ),
                         )
                       : CachedNetworkImage(
                           imageUrl:
@@ -135,7 +138,7 @@ class _InstagramState extends State<Instagram> {
     return Padding(
         padding: EdgeInsets.all(10 * widget.scale),
         child: fetched == true
-            ? GridView.builder(
+            ? ListView.builder(
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: EdgeInsets.all(10 * widget.scale),
@@ -143,8 +146,8 @@ class _InstagramState extends State<Instagram> {
                         display[index], likes[index], 200, 200),
                   );
                 },
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 1),
+                /*         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 1),*/
                 itemCount: caption.length,
               )
             : Center(

@@ -3,7 +3,8 @@ import 'package:http/http.dart' as http;
 
 String url =
     'https://api.twitter.com/1.1/search/tweets.json?q=%23covid19&src=typed_query&count=50&f=live';
-String token = "";
+String token =
+    "";
 
 class TwitterApi {
   List texts = [];
