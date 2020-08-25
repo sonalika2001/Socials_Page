@@ -49,9 +49,7 @@ class _SocialsScreenState extends State<SocialsScreen> {
                       enabled: social == Social.instagram,
                       colour: Colors.white,
                       icon: FontAwesomeIcons.instagram,
-                      child: Instagram(
-                        scale: social == Social.instagram ? 1 : 0.5,
-                      ),
+                      child: Instagram2(),
                     ),
                   ))),
           AnimatedPositioned(
@@ -75,7 +73,7 @@ class _SocialsScreenState extends State<SocialsScreen> {
                     child: ContainerProperties(
                         enabled: social == Social.twitter,
                         colour: Colors.blue,
-                        icon:FontAwesomeIcons.twitter,
+                        icon: FontAwesomeIcons.twitter,
                         child: Twitter(social: social)),
                   ))),
           AnimatedPositioned(
