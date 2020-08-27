@@ -4,12 +4,16 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import '../widgets/instagram_widget.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
-class Instagram2 extends StatefulWidget {
+class Instagram extends StatefulWidget {
+  final double scale;
+
+  Instagram({this.scale});
+
   @override
-  _Instagram2State createState() => _Instagram2State();
+  _InstagramState createState() => _InstagramState();
 }
 
-class _Instagram2State extends State<Instagram2> {
+class _InstagramState extends State<Instagram> {
   bool fetched = true;
 
   @override
@@ -30,14 +34,14 @@ class _Instagram2State extends State<Instagram2> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(10),
+      padding: EdgeInsets.all(10 * widget.scale),
       child: fetched == true
           ? StaggeredGridView.countBuilder(
               crossAxisCount: 4,
               itemCount: display.length,
               itemBuilder: (context, index) {
                 return Padding(
-                  padding: EdgeInsets.all(10),
+                  padding: EdgeInsets.all(10 * widget.scale),
                   child: InstagramWidget(
                       caption: caption[index],
                       url: shortcode[index],

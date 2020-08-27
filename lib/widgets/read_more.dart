@@ -15,12 +15,12 @@ class _ReadMoreState extends State<ReadMore> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(16.0),
+      // margin: EdgeInsets.all(16.0),
       child: new Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(widget.captionText,
-              maxLines: flag ? 8 : 2, textAlign: TextAlign.start),
+              maxLines: flag ? 8 : 4, textAlign: TextAlign.start),
           InkWell(
             onTap: () {
               setState(() {
