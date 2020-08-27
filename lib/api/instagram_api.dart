@@ -59,7 +59,7 @@ class GetInstaInfo {
 
 //this function is responsible for storing the urls for displaying the post depending on whether its an image(GraphImage) or video(GraphVideo)
   void displayData(Map singlepost, String postType) {
-    if (postType == 'GraphSideCar') {
+    if (postType == 'GraphSidecar') {
       List multiple =
           []; //this list will store all the display data for a post with multiple threads
 
