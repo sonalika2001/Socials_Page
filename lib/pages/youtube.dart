@@ -51,25 +51,28 @@ class _YouTubeState extends State<YouTube> {
               ),
             ),
           ),
-          Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                  begin: Alignment.bottomCenter,
-                  end: Alignment.topCenter,
-                  stops: [
-                    0.0,
-                    0.4,
-                    0.6,
-                    0.8,
-                    1.0
-                  ],
-                  colors: [
-                    Color(0xFF000000),
-                    Color(0x3F000000),
-                    Color(0x1A000000),
-                    Color(0x02000000),
-                    Color(0x00000000),
-                  ]),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(10),
+            child: Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    begin: Alignment.bottomCenter,
+                    end: Alignment.topCenter,
+                    stops: [
+                      0.0,
+                      0.4,
+                      0.6,
+                      0.8,
+                      1.0
+                    ],
+                    colors: [
+                      Color(0xFF000000),
+                      Color(0x3F000000),
+                      Color(0x1A000000),
+                      Color(0x02000000),
+                      Color(0x00000000),
+                    ]),
+              ),
             ),
           ),
           Align(
