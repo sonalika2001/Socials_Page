@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:socials_page/pages/twitter.dart';
 import 'package:socials_page/pages/youtube.dart';
+import 'package:socials_page/widgets/instagram_container.dart';
 import './api/instagram_api.dart';
 import 'pages/instagram.dart';
 import 'widgets/container_properties.dart';
@@ -45,7 +46,7 @@ class _SocialsScreenState extends State<SocialsScreen> {
                         ? height * 0.666667
                         : height * (1 - 0.666667),
                     width: (social == Social.instagram) ? width : width / 2.0,
-                    child: ContainerProperties(
+                    child: InstagramContainer(
                       enabled: social == Social.instagram,
                       colour: Colors.white,
                       icon: FontAwesomeIcons.instagram,
