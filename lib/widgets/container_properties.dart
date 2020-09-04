@@ -23,13 +23,14 @@ class ContainerProperties extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(10),
             child: Container(
-              child: (!enabled)
-                  ? Blur(
-                      opacity: 0.95,
-                      blur: 0.6,
-                      shade: Colors.grey[500],
-                      child: child,
-                    )
+              child
+                  // : (!enabled)
+                  //     ? Blur(
+                  //         opacity: 0.95,
+                  //         blur: 0.6,
+                  //         shade: Colors.grey[500],
+                  //         child: child,
+                  //       )
                   : child,
             ),
           ),

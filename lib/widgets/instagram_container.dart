@@ -19,13 +19,15 @@ class InstagramContainer extends StatefulWidget {
   _InstagramContainerState createState() => _InstagramContainerState();
 }
 
-class _InstagramContainerState extends State<InstagramContainer>  with TickerProviderStateMixin{
+class _InstagramContainerState extends State<InstagramContainer>
+    with TickerProviderStateMixin {
   TabController _tabController;
   @override
   void initState() {
     _tabController = new TabController(length: 2, vsync: this);
     super.initState();
   }
+
   @override
   void dispose() {
     _tabController.dispose();
@@ -40,71 +42,73 @@ class _InstagramContainerState extends State<InstagramContainer>  with TickerPro
           ClipRRect(
             borderRadius: BorderRadius.circular(10),
             child: Container(
-              child: (!widget.enabled)
-                  ? Blur(
-                opacity: 0.95,
-                blur: 0.6,
-                shade: Colors.grey[500],
-                child: widget.child,
-              )
-                  : Scaffold(
-                body: Column(
-                  children: [
-                  Container(
-                  height: 60,
-                //  margin: EdgeInsets.only(left: 60),
-                  child: TabBar(
-                    tabs: [
-                      Container(
-                        width: 70.0,
-                        child: new Text(
-                          'Posts',
-                          style: TextStyle(fontSize: 20),
+                child: (!widget.enabled)
+                    ?
+                    //   Blur(
+                    // opacity: 0.95,
+                    // blur: 0.6,
+                    // shade: Colors.grey[500],
+                    // child:
+                    widget.child
+                    // )
+                    : Scaffold(
+                        body: Column(
+                          children: [
+                            Container(
+                                height: 60,
+                                //  margin: EdgeInsets.only(left: 60),
+                                child: TabBar(
+                                  tabs: [
+                                    Container(
+                                      width: 70.0,
+                                      child: new Text(
+                                        'Posts',
+                                        style: TextStyle(fontSize: 20),
+                                      ),
+                                    ),
+                                    Container(
+                                      width: 70.0,
+                                      child: new Text(
+                                        'IGTV',
+                                        style: TextStyle(fontSize: 20),
+                                      ),
+                                    ),
+                                  ],
+                                  unselectedLabelColor: const Color(0xffacb3bf),
+                                  indicatorColor: Colors.pinkAccent,
+                                  labelColor: Colors.white,
+                                  indicatorSize: TabBarIndicatorSize.tab,
+                                  indicatorWeight: 3.0,
+                                  indicatorPadding: EdgeInsets.all(10),
+                                  isScrollable: false,
+                                  controller: _tabController,
+                                )),
+                            Expanded(
+                              child: Container(
+                                child: TabBarView(
+                                    controller: _tabController,
+                                    children: <Widget>[
+                                      widget.child,
+                                      Container(
+                                        child:
+                                            Text("Enter the igtv widget here."),
+                                      )
+                                    ]),
+                              ),
+                            )
+                          ],
                         ),
-                      ),
-                      Container(
-                        width: 70.0,
-                        child: new Text(
-                          'IGTV',
-                          style: TextStyle(fontSize: 20),
-                        ),
-                      ),],
-                      unselectedLabelColor: const Color(0xffacb3bf),
-                  indicatorColor: Colors.pinkAccent,
-                  labelColor: Colors.white,
-                  indicatorSize: TabBarIndicatorSize.tab,
-                  indicatorWeight: 3.0,
-                  indicatorPadding: EdgeInsets.all(10),
-                  isScrollable: false,
-                  controller: _tabController,)
-                  ),
-                    Expanded(
-                      child: Container(
-
-                        child: TabBarView(
-                            controller: _tabController,
-                            children: <Widget>[
-                             widget.child,
-                              Container(
-                                child: Text("Enter the igtv widget here."),
-                              )
-                            ]),
-                      ),
-                    )
-                  ],
-                ),
-              )
-            ),
+                      )),
           ),
           (!widget.enabled)
               ? Align(
-            alignment: Alignment.center,
-            child: Icon(
-              widget.icon,
-              size: 70,
-              color: widget.colour,
-            ),
-          )
+                  alignment: Alignment.center,
+                  child: Icon(
+                    widget.icon,
+                    size: 70,
+                    color: widget.colour,
+                  ),
+                )
               : SizedBox.shrink(),
         ],
       ),
