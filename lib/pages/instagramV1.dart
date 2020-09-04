@@ -6,7 +6,7 @@ import 'package:socials_page/api/instagram_api.dart';
 import 'package:socials_page/socials_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../api/instagram_api.dart';
-import 'package:socials_page/widgets/instagram_videoV1.dart';
+import 'package:socials_page/widgets/instagram_video.dart';
 
 class Instagram extends StatefulWidget {
   final double scale;
