@@ -7,12 +7,14 @@ class InstagramContainer extends StatefulWidget {
   final IconData icon;
   final bool enabled;
   Widget child;
+  Widget igtvChild;
 
   InstagramContainer({
     @required this.colour,
     this.icon,
     this.enabled = false,
     @required this.child,
+    @required this.igtvChild,
   });
 
   @override
@@ -52,6 +54,7 @@ class _InstagramContainerState extends State<InstagramContainer>
                     widget.child
                     // )
                     : Scaffold(
+                        backgroundColor: Color(0xFF1B1C21),
                         body: Column(
                           children: [
                             Container(
@@ -62,7 +65,7 @@ class _InstagramContainerState extends State<InstagramContainer>
                                     Container(
                                       width: 70.0,
                                       child: new Text(
-                                        'Posts',
+                                        'POSTS',
                                         style: TextStyle(fontSize: 20),
                                       ),
                                     ),
@@ -89,10 +92,7 @@ class _InstagramContainerState extends State<InstagramContainer>
                                     controller: _tabController,
                                     children: <Widget>[
                                       widget.child,
-                                      Container(
-                                        child:
-                                            Text("Enter the igtv widget here."),
-                                      )
+                                      widget.igtvChild,
                                     ]),
                               ),
                             )
