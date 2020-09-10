@@ -14,8 +14,8 @@ class GetInstaInfo {
   //gets the data from the api, no need to modify or call this
   static Future<List> getData() async {
     try {
-      await getURL.jsonPath();
-      url = '${getURL.instaPostURL}mittechtatva';
+      await GetURL.jsonPath();
+      url = '${GetURL.instaPostURL}mittechtatva';
       http.Response _response = await http.get(url);
       if (_response.statusCode == 200) {
         print('reached here');

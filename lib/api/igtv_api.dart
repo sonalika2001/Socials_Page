@@ -2,27 +2,29 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:socials_page/api_path.dart';
 
-class getIgtvInfo {
+List igtvCaption = [];
+List igtvTitle =
+    []; //a title for the igtv video, use this instead of caption if caption takes up lot of space on screen
+List igtvVideoUrl = [];
+List igtvThumbnailUrl = [];
+List igtvShortCode = [];
+List igtvLikes = [];
+
+class GetIgtvInfo {
   static String url;
-  List igtvCaption = [];
-  List igtvTitle =
-      []; //a title for the igtv video, use this instead of caption if caption takes up lot of space on screen
-  List igtvVideoUrl = [];
-  List igtvThumbnailUrl = [];
-  List igtvShortCode = [];
-  List igtvLikes = [];
 
   static Future getIgtvData() async {
     try {
-      await getURL.jsonPath();
-      url = '${getURL.instaIgtvURL}mittechtatva';
+      await GetURL.jsonPath();
+      url = '${GetURL.instaIgtvURL}mittechtatva';
       http.Response _response = await http.get(url);
       if (_response.statusCode == 200) {
         print('reached here');
         var body = jsonDecode(_response.body);
         print('got body');
-        List posts = body['entry_data']['ProfilePage'][0]['graphql']['user']
-            ['edge_felix_video_timeline']['edges'];
+        // List posts = body['entry_data']['ProfilePage'][0]['graphql']['user']
+        //     ['edge_felix_video_timeline']['edges'];
+        List posts = body['edges'];
         print('got posts');
         return posts;
       }

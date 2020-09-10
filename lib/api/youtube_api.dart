@@ -12,8 +12,8 @@ class GetYoutubeInfo {
 
   static Future getData() async {
     try {
-      await getURL.jsonPath();
-      url = '${getURL.youtubeURL}TechTatva';
+      await GetURL.jsonPath();
+      url = '${GetURL.youtubeURL}TechTatva';
       http.Response _response = await http.get(url);
       if (_response.statusCode == 200) {
         var body = jsonDecode(_response.body);
