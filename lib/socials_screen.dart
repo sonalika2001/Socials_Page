@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:socials_page/pages/igtv.dart';
 import 'package:socials_page/pages/twitter.dart';
 import 'package:socials_page/pages/youtube.dart';
 import 'package:socials_page/widgets/instagram_container.dart';
@@ -51,6 +52,9 @@ class _SocialsScreenState extends State<SocialsScreen> {
                       colour: Colors.white,
                       icon: FontAwesomeIcons.instagram,
                       child: Instagram(
+                        scale: social == Social.instagram ? 1 : 0.5,
+                      ),
+                      igtvChild: Igtv(
                         scale: social == Social.instagram ? 1 : 0.5,
                       ),
                     ),
