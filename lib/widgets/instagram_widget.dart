@@ -16,7 +16,7 @@ class InstagramWidget extends StatelessWidget {
   InstagramWidget({this.caption, this.url, this.display, this.likes});
 
   _showDialog() {
-    print(display);
+    //  print(display);
     showDialog(
       context: scaffoldKey.currentContext,
       builder: (context) {
@@ -61,19 +61,17 @@ class InstagramWidget extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
                 child: Stack(children: [
-                  Align(
-                    alignment: Alignment.center,
-                    child: CachedNetworkImage(
-                      imageUrl: (display[0] == 'image' || display[0] == 'video')
-                          ? display[1]
-                          : display[1][1],
-                      fit: BoxFit.fill,
-                    ),
+                  CachedNetworkImage(
+                    imageUrl: (display[0] == 'image' || display[0] == 'video')
+                        ? display[1]
+                        : display[1][1],
+                    fit: BoxFit.fill,
                   ),
                   (display[0] == 'image' || display[0] == 'multiple')
                       ? SizedBox.shrink()
-                      : Align(
+                      : Container(
                           alignment: Alignment.center,
+                          height: 250,
                           child: Icon(
                             FontAwesomeIcons.play,
                             size: 50,

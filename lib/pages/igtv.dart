@@ -52,7 +52,7 @@ class _IgtvState extends State<Igtv> {
             child: Container(
               child: CachedNetworkImage(
                 imageUrl: thumbnail,
-                fit: BoxFit.fill,
+                fit: BoxFit.fitWidth,
               ),
             ),
           ),
@@ -91,7 +91,7 @@ class _IgtvState extends State<Igtv> {
             alignment: Alignment.center,
             child: Icon(
               FontAwesomeIcons.play,
-              size: 50 * widget.scale,
+              size: 30 * widget.scale,
             ),
           ),
           // Align(
@@ -112,7 +112,7 @@ class _IgtvState extends State<Igtv> {
         padding: EdgeInsets.all(10 * widget.scale),
         child: fetched == true
             ? Container(
-                height: 200 * widget.scale,
+                height: 250 * widget.scale,
                 width: 30 * widget.scale,
                 child: GridView.builder(
                   itemBuilder: (context, index) {

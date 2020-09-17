@@ -25,9 +25,10 @@ class _InstagramState extends State<Instagram> {
 
   Future<void> _getData() async {
     await GetInstaInfo().storeData().then((value) {
-      setState(() {
-        fetched = true;
-      });
+      if (mounted)
+        setState(() {
+          fetched = true;
+        });
     });
   }
 
