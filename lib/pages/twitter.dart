@@ -63,8 +63,8 @@ class _TwitterState extends State<Twitter> {
                                       //  offset: Offset(1,1),
                                       //),
                                       new BoxShadow(
-                                          color: Colors
-                                              .blueAccent, //WhateverColor you wanna provide for embedding
+                                          color: Color(0xff4635a7),
+ //WhateverColor you wanna provide for embedding
                                           blurRadius: 4.0,
                                           spreadRadius: 4,
                                           offset: Offset(0, 1)),
